@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const accessKey = process.env.NEXT_PUBLIC_WEATHERSTACK_API_KEY;
+  const accessKey = process.env.WEATHERSTACK_API_KEY;
 
   if (!accessKey) {
     return NextResponse.json(
