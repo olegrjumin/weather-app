@@ -17,6 +17,19 @@ import {
 
 const data = currentWeatherResponse as CurrentWeatherData;
 
+test("renders correct location", () => {
+  render(<CurrentWeatherPanel data={data} />);
+  const mainPanel = screen.getByTestId("main-panel");
+
+  expect(mainPanel).toHaveTextContent("Overcast");
+  expect(mainPanel).toHaveTextContent("-2°C");
+  expect(mainPanel).toHaveTextContent("Feels like -2°C");
+
+  expect(mainPanel).toHaveTextContent(
+    `${data.location.name}, ${data.location.country}, ${data.location.region}`
+  );
+});
+
 test.each([[0], [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11]])(
   "renders correct panel content for uv index %i",
   (level) => {

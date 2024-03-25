@@ -39,7 +39,10 @@ export const CurrentWeatherPanel = ({ data }: { data: CurrentWeatherData }) => {
 
   return (
     <div className="bg-main-panel p-6 rounded-3xl max-w-4xl mx-auto">
-      <div className="flex justify-between items-center">
+      <div
+        className="flex justify-between items-center"
+        data-testid="main-panel"
+      >
         <div className="flex space-x-4 items-center">
           <Image src={image} alt={description} width={50} height={50} />
           <div>
