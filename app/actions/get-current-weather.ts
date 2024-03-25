@@ -26,7 +26,12 @@ export const getCurrentWeather = async (): Promise<CurrentWeatherData> => {
   }
 
   const response = await fetch(
-    `http://api.weatherstack.com/current?access_key=${accessKey}&query=${query}`
+    `http://api.weatherstack.com/current?access_key=${accessKey}&query=${query}`,
+    {
+      next: {
+        revalidate: 1800,
+      },
+    }
   );
 
   if (!response.ok) {
