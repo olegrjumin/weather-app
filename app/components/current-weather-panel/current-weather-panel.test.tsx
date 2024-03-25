@@ -4,8 +4,8 @@
 import { within } from "@testing-library/dom";
 import { render, screen } from "@testing-library/react";
 
-import { CurrentWeatherData } from "../lib/types";
-import { currentWeatherResponse } from "../mock-data/current-weather";
+import { CurrentWeatherData } from "../../lib/types";
+import { currentWeatherResponse } from "../../mock-data/current-weather";
 import { CurrentWeatherPanel } from "./current-weather-panel";
 import {
   humidityToDescription,

@@ -1,4 +1,4 @@
-import { CurrentWeatherPanel } from "./components/current-weather-panel";
+import { CurrentWeatherPanel } from "./components/current-weather-panel/current-weather-panel";
 
 import { getCurrentWeather } from "./actions/get-current-weather";
 

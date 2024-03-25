@@ -6,9 +6,9 @@ import {
   UvIndexIcon,
   VisibilityIcon,
   WindIcon,
-} from "../lib/icons";
-import { CurrentWeatherData } from "../lib/types";
-import { getUnits } from "../lib/unit-parameter";
+} from "../../lib/icons";
+import { CurrentWeatherData } from "../../lib/types";
+import { getUnits } from "../../lib/unit-parameter";
 import {
   humidityToDescription,
   precipitationToDescription,

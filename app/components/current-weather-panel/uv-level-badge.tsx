@@ -1,4 +1,4 @@
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import { uvIndexToDescription } from "./description-helpers";
 
 const uvLevelToColor = (uvIndex: number) => {
