@@ -57,3 +57,21 @@ describe("getCurrentWeather", () => {
     expect(data).toHaveProperty("current");
   });
 });
+
+test("throws an error if the api returns an error", async () => {
+  nock("http://api.weatherstack.com")
+    .get("/current")
+    .query(true)
+    .reply(200, {
+      success: false,
+      error: {
+        code: 404,
+        type: "404_not_found",
+        info: "User requested a resource which does not exist.",
+      },
+    });
+
+  await expect(getCurrentWeather()).rejects.toThrow(
+    "User requested a resource which does not exist."
+  );
+});

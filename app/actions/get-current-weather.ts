@@ -40,5 +40,9 @@ export const getCurrentWeather = async (): Promise<CurrentWeatherData> => {
 
   const data = await response.json();
 
+  if (!data.success && data.error) {
+    throw new Error(data.error.info);
+  }
+
   return data;
 };
