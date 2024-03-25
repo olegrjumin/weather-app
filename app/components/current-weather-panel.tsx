@@ -15,6 +15,7 @@ import {
   pressureToDescription,
   uvIndexToSuggestion,
   visibilityToDescription,
+  windSpeedToDescription,
 } from "./description-helpers";
 import { UvLevelBadge } from "./uv-level-badge";
 
@@ -61,78 +62,98 @@ export const CurrentWeatherPanel = ({ data }: { data: CurrentWeatherData }) => {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4 mt-6">
-        <div className="flex flex-col space-y-2 bg-small-panel p-4 rounded-xl">
+        <div
+          className="flex flex-col space-y-2 bg-small-panel p-4 rounded-xl"
+          data-testid="uv-index-panel"
+        >
           <div className="text-gray-400 flex items-center space-x-2">
             <UvIndexIcon className="text-gray-400 w-6 h-6" />
-            <div className="uppercase font-normal text-xs">UV Index</div>
+            <h3 className="uppercase font-normal text-xs">UV Index</h3>
           </div>
           <div className="text-white text-2xl font-semibold flex items-center space-x-2">
             <span>{uv_index}</span>
             <UvLevelBadge uvIndex={uv_index} />
           </div>
-          <div className="text-gray-400 text-xs">
+          <p className="text-gray-400 text-xs">
             {uvIndexToSuggestion(uv_index)}
-          </div>
+          </p>
         </div>
-        <div className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg">
+        <div
+          className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg"
+          data-testid="precipitation-panel"
+        >
           <div className="text-gray-400 flex items-center space-x-2">
             <PrecipitationIcon className="text-gray-400 w-6 h-6" />
-            <div className="uppercase font-normal text-xs">Precipitation</div>
+            <h3 className="uppercase font-normal text-xs">Precipitation</h3>
           </div>
           <div className="text-white text-2xl font-semibold">
             {precip} {unitSystem.precipitation}
           </div>
-          <div className="text-gray-400 text-xs">
+          <p className="text-gray-400 text-xs">
             {precipitationToDescription(precip)}
-          </div>
+          </p>
         </div>
-        <div className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg">
+        <div
+          className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg"
+          data-testid="visibility-panel"
+        >
           <div className="text-gray-400 flex items-center space-x-2">
             <VisibilityIcon className="text-gray-400 w-6 h-6" />
-            <div className="uppercase font-normal text-xs">Visibility</div>
+            <h3 className="uppercase font-normal text-xs">Visibility</h3>
           </div>
 
           <div className="text-white text-2xl font-semibold">
             {visibility} {unitSystem.visibility}
           </div>
-          <div className="text-gray-400 text-xs">
+          <p className="text-gray-400 text-xs">
             {visibilityToDescription(visibility)}
-          </div>
+          </p>
         </div>
-        <div className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg">
+        <div
+          className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg"
+          data-testid="humidity-panel"
+        >
           <div className="text-gray-400 flex items-center space-x-2">
             <HumidityIcon className="text-gray-400 w-6 h-6" />
-            <div className="uppercase font-normal text-xs">Humidity</div>
+            <h3 className="uppercase font-normal text-xs">Humidity</h3>
           </div>
 
           <div className="text-white text-2xl font-semibold">{humidity} %</div>
-          <div className="text-gray-400 text-xs">
+          <p className="text-gray-400 text-xs">
             {humidityToDescription(humidity)}
-          </div>
+          </p>
         </div>
-        <div className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg">
+        <div
+          className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg"
+          data-testid="wind-panel"
+        >
           <div className="text-gray-400 flex items-center space-x-2">
             <WindIcon className="text-gray-400 w-6 h-6" />
-            <div className="uppercase font-normal text-xs">Wind</div>
+            <h3 className="uppercase font-normal text-xs">Wind</h3>
           </div>
 
           <div className="text-white text-2xl font-semibold">
             {wind_speed} {unitSystem.windSpeed}
           </div>
-          <div className="text-gray-400"></div>
+          <div className="text-gray-400 text-xs">
+            {windSpeedToDescription(wind_speed)}
+          </div>
         </div>
-        <div className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg">
+        <div
+          className="flex flex-col space-y-2 bg-small-panel p-4 rounded-lg"
+          data-testid="pressure-panel"
+        >
           <div className="text-gray-400 flex items-center space-x-2">
             <PressureIcon className="text-gray-400 w-6 h-6" />
-            <div className="uppercase font-normal text-xs">Pressure</div>
+            <h3 className="uppercase font-normal text-xs">Pressure</h3>
           </div>
 
           <div className="text-white text-2xl font-semibold">
             {pressure} {unitSystem.pressure}
           </div>
-          <div className="text-gray-400 text-xs">
+          <p className="text-gray-400 text-xs">
             {pressureToDescription(pressure)}
-          </div>
+          </p>
         </div>
       </div>
     </div>

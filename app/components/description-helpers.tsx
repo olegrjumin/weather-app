@@ -106,6 +106,28 @@ const humidityToDescription = (humidity: number) => {
   }
 };
 
+const windSpeedToDescription = (windSpeed: number) => {
+  if (windSpeed < 5) {
+    return "Calm: Wind barely perceptible, smoke rises vertically.";
+  } else if (windSpeed < 20) {
+    return "Moderate breeze: Leaves rustle, small twigs in motion.";
+  } else if (windSpeed < 40) {
+    return "Strong breeze: Branches sway, umbrellas difficult to control.";
+  } else if (windSpeed < 60) {
+    return "Near gale: Whole trees in motion, resistance felt walking against the wind.";
+  } else if (windSpeed < 75) {
+    return "Gale: Twigs break off trees, walking difficult.";
+  } else if (windSpeed < 90) {
+    return "Strong gale: Minor structural damage may occur, walking hazardous.";
+  } else if (windSpeed < 105) {
+    return "Storm: Trees uprooted, considerable structural damage.";
+  } else if (windSpeed < 120) {
+    return "Violent storm: Widespread damage, very risky to be outside.";
+  } else {
+    return "Hurricane force: Devastation occurs, stay indoors and seek shelter.";
+  }
+};
+
 export {
   feelsLikeToDescription,
   feelsLikeToSuggestion,
@@ -115,4 +137,5 @@ export {
   uvIndexToDescription,
   uvIndexToSuggestion,
   visibilityToDescription,
+  windSpeedToDescription,
 };
