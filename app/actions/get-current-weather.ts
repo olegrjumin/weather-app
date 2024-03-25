@@ -1,20 +1,39 @@
-import { BASE_URL } from "../lib/constants";
-import { CurrentWeatherData } from "../lib/types";
+import { CurrentWeatherData } from "@/app/lib/types";
+import { headers } from "next/headers";
+
+const getIp = () => {
+  let forwardedFor = headers().get("x-forwarded-for");
+  let realIp = headers().get("x-real-ip");
+
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0];
+  }
+
+  if (realIp) {
+    return realIp.trim();
+  }
+};
 
 export const getCurrentWeather = async (): Promise<CurrentWeatherData> => {
-  try {
-    console.log(BASE_URL);
-    const data = await fetch(`${BASE_URL}/api/current`);
+  const accessKey = process.env.WEATHERSTACK_API_KEY;
+  const ip = getIp();
 
-    if (!data.ok) {
-      throw new Error("Failed to fetch current weather data");
-    }
+  const isDev = process.env.NODE_ENV === "development";
+  const query = isDev ? "fetch:ip" : ip;
 
-    return await data.json();
-  } catch (error) {
-    console.error(error);
-    throw new Error(
-      `Failed to fetch data from the current weather API: ${error}`
-    );
+  if (!accessKey) {
+    throw new Error("Missing Weatherstack API key");
   }
+
+  const response = await fetch(
+    `http://api.weatherstack.com/current?access_key=${accessKey}&query=${query}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  const data = await response.json();
+
+  return data;
 };
