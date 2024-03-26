@@ -13,7 +13,7 @@ import {
   pressureToDescription,
   uvIndexToDescription,
   uvIndexToSuggestion,
-} from "./description-helpers";
+} from "./weather-parameters-list/description-helpers";
 
 const data = currentWeatherResponse as CurrentWeatherData;
 

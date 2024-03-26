@@ -26,38 +26,6 @@ const uvIndexToSuggestion = (uvIndex: number) => {
   }
 };
 
-const feelsLikeToDescription = (feelsLike: number) => {
-  if (feelsLike < 0) {
-    return "Freezing";
-  } else if (feelsLike < 10) {
-    return "Cold";
-  } else if (feelsLike < 20) {
-    return "Cool";
-  } else if (feelsLike < 30) {
-    return "Warm";
-  } else if (feelsLike < 40) {
-    return "Hot";
-  } else {
-    return "Very Hot";
-  }
-};
-
-const feelsLikeToSuggestion = (feelsLike: number) => {
-  if (feelsLike < 0) {
-    return "Bundle up and stay warm.";
-  } else if (feelsLike < 10) {
-    return "Wear layers and a coat.";
-  } else if (feelsLike < 20) {
-    return "Light jacket or sweater might be enough.";
-  } else if (feelsLike < 30) {
-    return "Dress comfortably in light clothing.";
-  } else if (feelsLike < 40) {
-    return "Stay hydrated and avoid prolonged exposure to the sun.";
-  } else {
-    return "Stay indoors or in shaded areas, and keep hydrated.";
-  }
-};
-
 const pressureToDescription = (pressure: number) => {
   if (pressure < 980) {
     return "Very low pressure: Indicates stormy weather.";
@@ -129,8 +97,6 @@ const windSpeedToDescription = (windSpeed: number) => {
 };
 
 export {
-  feelsLikeToDescription,
-  feelsLikeToSuggestion,
   humidityToDescription,
   precipitationToDescription,
   pressureToDescription,

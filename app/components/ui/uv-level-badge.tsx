@@ -1,5 +1,5 @@
 import { cn } from "../../lib/utils";
-import { uvIndexToDescription } from "./description-helpers";
+import { uvIndexToDescription } from "../current-weather-panel/weather-parameters-list/description-helpers";
 
 const uvLevelToColor = (uvIndex: number) => {
   if (uvIndex < 3) {

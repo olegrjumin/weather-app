@@ -38,7 +38,7 @@ type FahrenheitUnits = typeof farenheitUnits;
 
 export type UnitParamerter = "m" | "s" | "f";
 
-type UnitMap = {
+export type UnitMap = {
   m: MetricUnits;
   s: ScientificUnits;
   f: FahrenheitUnits;
