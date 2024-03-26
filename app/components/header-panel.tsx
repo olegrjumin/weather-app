@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { UnitParamerter } from "../lib/unit-parameter";
 
 import { Select } from "./ui/select";
@@ -10,11 +10,12 @@ export const HeaderPanel = ({
 }: {
   queryUnit?: UnitParamerter;
 }) => {
+  const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
   const setQueryString = (key: string, value: string) => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParams.toString());
     params.set(key, value);
     router.replace(`${pathname}?${params.toString()}`);
   };
