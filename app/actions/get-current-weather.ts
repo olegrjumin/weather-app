@@ -1,5 +1,6 @@
 import { CurrentWeatherData } from "@/app/lib/types";
 import { headers } from "next/headers";
+import { UnitParamerter } from "../lib/unit-parameter";
 
 const getIp = () => {
   let forwardedFor = headers().get("x-forwarded-for");
@@ -14,7 +15,11 @@ const getIp = () => {
   }
 };
 
-export const getCurrentWeather = async (): Promise<CurrentWeatherData> => {
+export const getCurrentWeather = async ({
+  unit,
+}: {
+  unit?: UnitParamerter;
+} = {}): Promise<CurrentWeatherData> => {
   const accessKey = process.env.WEATHERSTACK_API_KEY;
   const ip = getIp();
 
@@ -26,7 +31,7 @@ export const getCurrentWeather = async (): Promise<CurrentWeatherData> => {
   }
 
   const response = await fetch(
-    `http://api.weatherstack.com/current?access_key=${accessKey}&query=${query}`,
+    `http://api.weatherstack.com/current?access_key=${accessKey}&query=${query}&units=${unit}`,
     {
       next: {
         revalidate: 1800,
