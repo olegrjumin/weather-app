@@ -26,7 +26,7 @@ export const Select = ({
         value={value}
         onChange={onChange}
         id={uniqueId}
-        className="appearance-none border bg-no-repeat bg-small-panel text-white border-gray-600 text-sm rounded-lg block w-full p-2.5 outline-none"
+        className="form-select appearance-none border bg-no-repeat bg-small-panel text-white border-gray-600 text-sm rounded-lg block w-full p-2.5 outline-none"
       >
         {options.map((option) => (
           <option key={option} value={option}>
