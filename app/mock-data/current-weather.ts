@@ -1,11 +1,11 @@
 export const currentWeatherResponse = {
-  request: { type: "IP", query: "90.190.17.247", language: "en", unit: "m" },
+  request: { type: "IP", query: "123.123.123.123", language: "en", unit: "m" },
   location: {
     name: "Tallinn",
     country: "Estonia",
     region: "Harjumaa",
-    lat: "59.434",
-    lon: "24.728",
+    lat: "50.434",
+    lon: "20.728",
     timezone_id: "Europe/Tallinn",
     localtime: "2024-03-23 23:58",
     localtime_epoch: 1711238280,

@@ -7,7 +7,7 @@ import {
   WindIcon,
 } from "@/app/lib/icons";
 import { CurrentWeatherData } from "@/app/lib/types";
-import { UnitMap, UnitParamerter } from "@/app/lib/unit-parameter";
+import { UnitParamerter, getUnits } from "@/app/lib/unit-parameter";
 import { Card, CardContent, CardDescription, CardTitle } from "../../ui/card";
 import { UvLevelBadge } from "../../ui/uv-level-badge";
 import {
@@ -21,10 +21,15 @@ import {
 
 const getPanelItems = (
   current: CurrentWeatherData["current"],
-  unitSystem: UnitMap[UnitParamerter]
+  unit: UnitParamerter
 ) => {
+  const unitSystem = getUnits(unit);
   const { uv_index, visibility, wind_speed, precip, pressure, humidity } =
     current;
+
+  const precipitationInMm = unit === "f" ? precip * 25.4 : precip;
+  const visibilityInKm = unit === "f" ? visibility * 1.60934 : visibility;
+  const windSpeedInKm = unit === "f" ? wind_speed * 1.60934 : wind_speed;
 
   return [
     {
@@ -41,18 +46,18 @@ const getPanelItems = (
       dataTestId: "precipitation-panel",
       icon: <PrecipitationIcon />,
       title: "Precipitation",
-      value: precip,
+      value: precipitationInMm,
       valueWithUnit: `${precip} ${unitSystem.precipitation}`,
-      description: precipitationToDescription(precip),
+      description: precipitationToDescription(precipitationInMm),
     },
     {
       id: "3",
       dataTestId: "visibility-panel",
       icon: <VisibilityIcon />,
       title: "Visibility",
-      value: visibility,
+      value: visibilityInKm,
       valueWithUnit: `${visibility} ${unitSystem.visibility}`,
-      description: visibilityToDescription(visibility),
+      description: visibilityToDescription(visibilityInKm),
     },
     {
       id: "4",
@@ -68,9 +73,9 @@ const getPanelItems = (
       dataTestId: "wind-panel",
       icon: <WindIcon />,
       title: "Wind",
-      value: wind_speed,
+      value: windSpeedInKm,
       valueWithUnit: `${wind_speed} ${unitSystem.windSpeed}`,
-      description: windSpeedToDescription(wind_speed),
+      description: windSpeedToDescription(windSpeedInKm),
     },
     {
       id: "6",
@@ -86,12 +91,12 @@ const getPanelItems = (
 
 export const WeatherParametersList = ({
   currentWeatherData,
-  unitSystem,
+  unit,
 }: {
   currentWeatherData: CurrentWeatherData["current"];
-  unitSystem: UnitMap[UnitParamerter];
+  unit: UnitParamerter;
 }) => {
-  const items = getPanelItems(currentWeatherData, unitSystem);
+  const items = getPanelItems(currentWeatherData, unit);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
       {items.map((item) => {

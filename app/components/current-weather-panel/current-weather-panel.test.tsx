@@ -13,6 +13,8 @@ import {
   pressureToDescription,
   uvIndexToDescription,
   uvIndexToSuggestion,
+  visibilityToDescription,
+  windSpeedToDescription,
 } from "./weather-parameters-list/description-helpers";
 
 const data = currentWeatherResponse as CurrentWeatherData;
@@ -126,6 +128,7 @@ test.each([
   expect(within(windPanel).getByRole("heading")).toHaveTextContent("Wind");
 
   expect(windPanel).toHaveTextContent(`${level} km/h`);
+  expect(windPanel).toHaveTextContent(windSpeedToDescription(level));
 });
 
 test.each([
@@ -149,4 +152,53 @@ test.each([
 
   expect(pressurePanel).toHaveTextContent(`${level} mb`);
   expect(pressurePanel).toHaveTextContent(pressureToDescription(level));
+});
+
+test("renders correct panel content for unit f", () => {
+  const newData: CurrentWeatherData = {
+    ...data,
+    request: {
+      ...data.request,
+      unit: "f",
+    },
+    current: {
+      ...data.current,
+      precip: 100,
+      visibility: 2.49,
+      wind_speed: 47.22,
+      humidity: 100,
+      pressure: 1000,
+    },
+  };
+  render(<CurrentWeatherPanel data={newData} />);
+  const precipitationPanel = screen.getByTestId("precipitation-panel");
+
+  expect(precipitationPanel).toHaveTextContent("100 in");
+
+  const precipitationInMm = 2540;
+  expect(precipitationPanel).toHaveTextContent(
+    precipitationToDescription(precipitationInMm)
+  );
+
+  const visibilityPanel = screen.getByTestId("visibility-panel");
+  expect(visibilityPanel).toHaveTextContent("2.49 mi");
+
+  const visibilityInKm = 4;
+  expect(visibilityPanel).toHaveTextContent(
+    visibilityToDescription(visibilityInKm)
+  );
+
+  const windPanel = screen.getByTestId("wind-panel");
+  expect(windPanel).toHaveTextContent("47.22 mph");
+
+  const windSpeedInKm = 76;
+  expect(windPanel).toHaveTextContent(windSpeedToDescription(windSpeedInKm));
+
+  const humidityPanel = screen.getByTestId("humidity-panel");
+  expect(humidityPanel).toHaveTextContent("100 %");
+  expect(humidityPanel).toHaveTextContent(humidityToDescription(100));
+
+  const pressurePanel = screen.getByTestId("pressure-panel");
+  expect(pressurePanel).toHaveTextContent("1000 mb");
+  expect(pressurePanel).toHaveTextContent(pressureToDescription(1000));
 });

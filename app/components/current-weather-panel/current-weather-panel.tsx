@@ -6,7 +6,8 @@ import { WeatherParametersList } from "./weather-parameters-list/weather-paramet
 export const CurrentWeatherPanel = ({ data }: { data: CurrentWeatherData }) => {
   const { current } = data;
 
-  const unitSystem = getUnits(data.request.unit);
+  const unit = data.request.unit;
+  const unitSystem = getUnits(unit);
 
   const image = current.weather_icons[0] || "";
   const description = current.weather_descriptions[0] || "";
@@ -41,10 +42,7 @@ export const CurrentWeatherPanel = ({ data }: { data: CurrentWeatherData }) => {
         </div>
       </div>
 
-      <WeatherParametersList
-        currentWeatherData={current}
-        unitSystem={unitSystem}
-      />
+      <WeatherParametersList currentWeatherData={current} unit={unit} />
     </div>
   );
 };
