@@ -1,3 +1,4 @@
+import { KM_TO_MILES, MM_TO_INCH } from "@/app/lib/constants";
 import {
   HumidityIcon,
   PrecipitationIcon,
@@ -27,9 +28,9 @@ const getPanelItems = (
   const { uv_index, visibility, wind_speed, precip, pressure, humidity } =
     current;
 
-  const precipitationInMm = unit === "f" ? precip * 25.4 : precip;
-  const visibilityInKm = unit === "f" ? visibility * 1.60934 : visibility;
-  const windSpeedInKm = unit === "f" ? wind_speed * 1.60934 : wind_speed;
+  const precipitationInMm = unit === "f" ? precip * MM_TO_INCH : precip;
+  const visibilityInKm = unit === "f" ? visibility * KM_TO_MILES : visibility;
+  const windSpeedInKm = unit === "f" ? wind_speed * KM_TO_MILES : wind_speed;
 
   return [
     {
