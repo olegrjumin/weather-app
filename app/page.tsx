@@ -6,13 +6,20 @@ import { UnitParamerter } from "./lib/unit-parameter";
 
 export const revalidate = 1800;
 
-export default async function Home({ searchParams: { unit = "m" } }) {
-  const queryUnit = unit as UnitParamerter;
-  const currentWeather = await getCurrentWeather({ unit: queryUnit });
+type HomeProps = {
+  searchParams: {
+    unit?: UnitParamerter;
+  };
+};
+
+export default async function Home({
+  searchParams: { unit = "m" },
+}: HomeProps) {
+  const currentWeather = await getCurrentWeather({ unit });
 
   return (
     <main className="container mx-auto mt-12">
-      <HeaderPanel queryUnit={queryUnit} />
+      <HeaderPanel queryUnit={unit} />
       <CurrentWeatherPanel data={currentWeather} />
     </main>
   );
