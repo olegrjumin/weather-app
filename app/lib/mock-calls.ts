@@ -7,6 +7,7 @@ import {
 import { CurrentWeatherData } from "./types";
 import { UnitParamerter } from "./unit-parameter";
 
+const MS = 100;
 export const getCurrentWeatherMock = async ({
   unit,
 }: {
@@ -23,7 +24,7 @@ export const getCurrentWeatherMock = async ({
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(currentWeather as CurrentWeatherData);
-    }, 1000);
+    }, MS);
   });
 };
 
@@ -33,6 +34,6 @@ export const getCurrentLocationPhotoMock = async (): Promise<
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(currentPhotoResponse);
-    }, 1000);
+    }, MS);
   });
 };
