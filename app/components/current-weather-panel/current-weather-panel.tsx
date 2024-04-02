@@ -1,9 +1,16 @@
 import Image from "next/image";
 import { CurrentWeatherData } from "../../lib/types";
 import { getUnits } from "../../lib/unit-parameter";
+import { Card } from "../ui/card";
 import { WeatherParametersList } from "./weather-parameters-list/weather-parameters-list";
 
-export const CurrentWeatherPanel = ({ data }: { data: CurrentWeatherData }) => {
+export const CurrentWeatherPanel = ({
+  data,
+  currentPhoto,
+}: {
+  data: CurrentWeatherData;
+  currentPhoto: string;
+}) => {
   const { current } = data;
 
   const unit = data.request.unit;
@@ -42,7 +49,19 @@ export const CurrentWeatherPanel = ({ data }: { data: CurrentWeatherData }) => {
         </div>
       </div>
 
-      <WeatherParametersList currentWeatherData={current} unit={unit} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+        <Card className="row-span-2 h-64">
+          <Image
+            src={currentPhoto}
+            alt={description}
+            width={100}
+            height={100}
+            className="size-full object-cover rounded-md"
+          />
+        </Card>
+
+        <WeatherParametersList currentWeatherData={current} unit={unit} />
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { cn } from "@/app/lib/utils";
 import { forwardRef } from "react";
 
 const Card = forwardRef(
@@ -5,12 +6,20 @@ const Card = forwardRef(
     {
       children,
       dataTestId,
-    }: { children: React.ReactNode; dataTestId?: string },
+      ...rest
+    }: {
+      children: React.ReactNode;
+      dataTestId?: string;
+      className?: string;
+    },
     ref: React.Ref<HTMLDivElement>
   ) => {
     return (
       <div
-        className="flex flex-col space-y-2 bg-small-panel p-4 rounded-xl size-full"
+        className={cn(
+          "flex flex-col space-y-2 bg-small-panel p-4 rounded-xl size-full",
+          rest.className
+        )}
         data-testid={dataTestId}
         ref={ref}
       >

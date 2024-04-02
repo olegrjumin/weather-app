@@ -99,10 +99,10 @@ export const WeatherParametersList = ({
 }) => {
   const items = getPanelItems(currentWeatherData, unit);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+    <>
       {items.map((item) => {
         return (
-          <Card key={item.id} dataTestId={item.dataTestId}>
+          <Card key={item.id} dataTestId={item.dataTestId} className="h-30">
             <CardTitle icon={item.icon} title={item.title} />
             <CardContent>
               <div className="flex items-center space-x-2">
@@ -116,6 +116,6 @@ export const WeatherParametersList = ({
           </Card>
         );
       })}
-    </div>
+    </>
   );
 };
