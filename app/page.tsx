@@ -20,7 +20,7 @@ type HomeProps = {
 export default async function Home({
   searchParams: { unit = "m" },
 }: HomeProps) {
-  const useMock = true;
+  const useMock = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
   const currentWeather = useMock
     ? await getCurrentWeatherMock({ unit })
     : await getCurrentWeather({ unit });
@@ -38,7 +38,7 @@ export default async function Home({
     <main className="container mx-auto mt-12 max-w-4xl">
       {useMock && (
         <div
-          className="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50"
+          className="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-300"
           role="alert"
         >
           Info: You are using Weatherstack and Unsplash API mock data

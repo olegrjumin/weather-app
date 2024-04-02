@@ -2,7 +2,10 @@ import { CurrentWeatherData } from "@/app/lib/types";
 import { headers } from "next/headers";
 import { UnitParamerter } from "../lib/unit-parameter";
 
-if (!process.env.WEATHERSTACK_API_KEY) {
+if (
+  !process.env.WEATHERSTACK_API_KEY &&
+  process.env.NEXT_PUBLIC_USE_MOCK_API !== "true"
+) {
   throw new Error("Missing Weatherstack API key");
 }
 

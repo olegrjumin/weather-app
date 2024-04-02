@@ -9,7 +9,7 @@ https://weather-app-olegrjumin.vercel.app/
 
 ## Getting Started
 
-1. Add your Weatherstack API key to the `.env` file:
+1. Add necessary variables to `.env` file or set NEXT_PUBLIC_USE_MOCK_API=true to use mock data.
 2. Install the dependencies then run the development server:
 
 ```bash
