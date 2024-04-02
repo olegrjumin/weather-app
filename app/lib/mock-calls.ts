@@ -1,3 +1,4 @@
+import { currentPhotoResponse } from "../mock-data/current-photo";
 import {
   currentWeatherResponse,
   currentWeatherResponseFahrenheit,
@@ -19,9 +20,19 @@ export const getCurrentWeatherMock = async ({
 
   const currentWeather = unitToReponseMap[unit || "m"];
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(currentWeather as CurrentWeatherData);
+    }, 1000);
+  });
+};
+
+export const getCurrentLocationPhotoMock = async (): Promise<
+  typeof currentPhotoResponse
+> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(currentPhotoResponse);
     }, 1000);
   });
 };

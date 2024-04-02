@@ -26,7 +26,7 @@ export const HeaderPanel = ({
   };
 
   return (
-    <div className="container mx-auto max-w-4xl flex justify-end my-4">
+    <div className="flex justify-end w-full mb-4">
       <div className="max-w-[100px]">
         <Select
           value={queryUnit}

@@ -22,7 +22,7 @@ export const CurrentWeatherPanel = ({
   const { feelslike } = current;
 
   return (
-    <div className="bg-main-panel mx-1 p-4 md:p-6 rounded-3xl max-w-4xl md:mx-auto">
+    <div className="bg-main-panel mx-1 p-4 md:p-6 rounded-3xl">
       <div
         className="flex justify-between items-center"
         data-testid="main-panel"
