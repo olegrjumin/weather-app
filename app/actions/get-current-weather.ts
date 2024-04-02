@@ -2,6 +2,10 @@ import { CurrentWeatherData } from "@/app/lib/types";
 import { headers } from "next/headers";
 import { UnitParamerter } from "../lib/unit-parameter";
 
+if (!process.env.WEATHERSTACK_API_KEY) {
+  throw new Error("Missing Weatherstack API key");
+}
+
 const getIp = () => {
   let forwardedFor = headers().get("x-forwarded-for");
   let realIp = headers().get("x-real-ip");
